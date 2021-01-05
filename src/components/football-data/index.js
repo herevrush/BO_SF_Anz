@@ -9,9 +9,7 @@ export default class FootballMatchesData extends Component {
     super(props);
     this.state = {
       selectedYear: null,
-      matches: [],
-      totalMatches: null,
-
+      matches: []
     };
   }
 
@@ -26,8 +24,7 @@ export default class FootballMatchesData extends Component {
     fetch(`https://jsonmock.hackerrank.com/api/football_competitions?year=${year}`)
       .then((response) => response.json())
       .then(data => this.setState({
-        matches: data.data,
-        totalMatches: data.total
+        matches: data.data
       }));
 
   }
@@ -67,9 +64,9 @@ export default class FootballMatchesData extends Component {
 
         <section className="content">
           <section>
-            {this.state.selectedYear && this.state.totalMatches > 0 &&
+            {this.state.selectedYear && this.state.matches.length > 0 &&
               <div className="total-matches" data-testid="total-matches">
-                Total matches: {this.state.totalMatches}
+                Total matches: {this.state.matches.length}
               </div>
             }
 
